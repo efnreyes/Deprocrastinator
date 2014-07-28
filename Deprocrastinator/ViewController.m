@@ -8,8 +8,8 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
+@property NSMutableArray *todos;
 @end
 
 @implementation ViewController
@@ -17,13 +17,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.todos = [NSMutableArray arrayWithObjects:
+                  @"TODO 1",
+                  @"TODO 2",
+                  @"TODO 3",
+                  @"TODO 4",
+                  nil];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark UITableViewDataSource
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 4;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell;
+    cell = [tableView dequeueReusableCellWithIdentifier:@"somethingUsefulID"];
+    cell.textLabel.text = [NSString stringWithFormat:@"Row %i", indexPath.row];
+    return cell;
 }
 
 @end
