@@ -11,6 +11,7 @@
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property NSMutableArray *todos;
+@property (strong, nonatomic) IBOutlet UIButton *editButton;
 @property (strong, nonatomic) IBOutlet UITableView *todoTableView;
 @end
 
@@ -36,6 +37,16 @@
     [self.view endEditing:YES];
 }
 
+- (IBAction)onEditButtonPressed:(id)sender {
+    NSLog(@"Edit button action");
+    if ([self.editButton.titleLabel.text isEqualToString:@"Edit"]) {
+        [sender setTitle: @"Done" forState: UIControlStateNormal];
+    } else {
+        [sender setTitle: @"Edit" forState: UIControlStateNormal];
+    }
+
+}
+
 #pragma mark UITableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.todos.count;
@@ -49,10 +60,14 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Row selected: %d", indexPath.row);
-
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.textLabel.textColor = [UIColor greenColor];
+    if ([self.editButton.titleLabel.text isEqualToString:@"Done"]) {
+        NSLog(@"Done is selected");
+        [self.todos removeObjectAtIndex:indexPath.row];
+        [self.todoTableView reloadData];
+    } else {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.textLabel.textColor = [UIColor greenColor];
+    }
 }
 
 @end

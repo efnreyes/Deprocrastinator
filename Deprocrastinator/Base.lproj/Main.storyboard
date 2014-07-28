@@ -36,13 +36,13 @@
                                 </connections>
                             </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DIm-Lc-nyz">
-                                <rect key="frame" x="0.0" y="64" width="230" height="30"/>
+                                <rect key="frame" x="20" y="64" width="203" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tNy-DU-xkd">
-                                <rect key="frame" x="238" y="63" width="30" height="30"/>
+                                <rect key="frame" x="231" y="63" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -52,17 +52,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJa-wX-mfu">
-                                <rect key="frame" x="276" y="63" width="30" height="30"/>
+                                <rect key="frame" x="269" y="63" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Edit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onEditButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xot-LU-GK0"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Deprocrastinatooooor" id="89x-6P-fGh"/>
                     <connections>
+                        <outlet property="editButton" destination="kJa-wX-mfu" id="0Gs-f5-yzo"/>
                         <outlet property="textField" destination="DIm-Lc-nyz" id="4kq-gM-fZo"/>
                         <outlet property="todoTableView" destination="1Qe-tw-oPQ" id="vgk-OB-KbA"/>
                     </connections>
