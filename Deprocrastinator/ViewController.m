@@ -28,9 +28,11 @@
 }
 
 - (IBAction)onAddButtonPressed:(id)sender {
-    [self.todos addObject:self.textField.text];
-    [self.todoTableView reloadData];
-    self.textField.text = @"";
+    if (![self.textField.text isEqualToString:@""]) {
+        [self.todos addObject:self.textField.text];
+        [self.todoTableView reloadData];
+        self.textField.text = @"";
+    }
     [self.view endEditing:YES];
 }
 
