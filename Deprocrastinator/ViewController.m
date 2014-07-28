@@ -9,7 +9,9 @@
 #import "ViewController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (strong, nonatomic) IBOutlet UITextField *textField;
 @property NSMutableArray *todos;
+@property (strong, nonatomic) IBOutlet UITableView *todoTableView;
 @end
 
 @implementation ViewController
@@ -25,15 +27,22 @@
                   nil];
 }
 
+- (IBAction)onAddButtonPressed:(id)sender {
+    [self.todos addObject:self.textField.text];
+    [self.todoTableView reloadData];
+    self.textField.text = @"";
+    [self.view endEditing:YES];
+}
+
 #pragma mark UITableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return self.todos.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
     cell = [tableView dequeueReusableCellWithIdentifier:@"somethingUsefulID"];
-    cell.textLabel.text = [NSString stringWithFormat:@"Row %i", indexPath.row];
+    cell.textLabel.text = [self.todos objectAtIndex:indexPath.row];
     return cell;
 }
 
