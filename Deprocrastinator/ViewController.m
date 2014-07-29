@@ -47,6 +47,27 @@
 
 }
 
+-(IBAction)onSwipe:(UIGestureRecognizer *)gestureRecognizer {
+    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        CGPoint swipeLocation = [gestureRecognizer locationInView:self.todoTableView];
+        NSIndexPath *swipedIndexPath = [self.todoTableView indexPathForRowAtPoint:swipeLocation];
+        UITableViewCell* swipedCell = [self.todoTableView cellForRowAtIndexPath:swipedIndexPath];
+        if ([swipedCell.textLabel.textColor isEqual:[UIColor blackColor]]) {
+            NSLog(@"Black color");
+            swipedCell.textLabel.textColor = [UIColor greenColor];
+        } else if ([swipedCell.textLabel.textColor isEqual:[UIColor greenColor]]) {
+            NSLog(@"Green color");
+            swipedCell.textLabel.textColor = [UIColor yellowColor];
+        } else if ([swipedCell.textLabel.textColor isEqual:[UIColor yellowColor]]) {
+            NSLog(@"Yellow color");
+            swipedCell.textLabel.textColor = [UIColor redColor];
+        } else if ([swipedCell.textLabel.textColor isEqual:[UIColor redColor]]) {
+            NSLog(@"Red color");
+            swipedCell.textLabel.textColor = [UIColor blackColor];
+        }
+    }
+}
+
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.todos removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];

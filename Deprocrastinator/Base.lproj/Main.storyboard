@@ -33,6 +33,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="Kps-bq-CtC"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="4pI-nM-rsV"/>
+                                    <outletCollection property="gestureRecognizers" destination="aqd-kY-aVy" appends="YES" id="39g-qn-LDj"/>
                                 </connections>
                             </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DIm-Lc-nyz">
@@ -63,6 +64,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                     </view>
                     <navigationItem key="navigationItem" title="Deprocrastinatooooor" id="89x-6P-fGh"/>
                     <connections>
@@ -72,6 +74,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="aqd-kY-aVy">
+                    <connections>
+                        <action selector="onSwipe:" destination="vXZ-lx-hvc" id="8Wh-gT-lwc"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="632" y="61"/>
         </scene>
