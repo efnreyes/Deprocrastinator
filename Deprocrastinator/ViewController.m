@@ -26,6 +26,7 @@
                   @"TODO 3",
                   @"TODO 4",
                   nil];
+    self.todoTableView.allowsSelectionDuringEditing = YES;
 }
 
 - (IBAction)onAddButtonPressed:(id)sender {
@@ -39,10 +40,14 @@
 
 - (IBAction)onEditButtonPressed:(id)sender {
     NSLog(@"Edit button action");
+
     if ([self.editButton.titleLabel.text isEqualToString:@"Edit"]) {
         [sender setTitle: @"Done" forState: UIControlStateNormal];
+        [self.todoTableView setEditing:YES animated:YES];
     } else {
         [sender setTitle: @"Edit" forState: UIControlStateNormal];
+        self.editing = NO;
+        [self.todoTableView setEditing:NO animated:YES];
     }
 
 }
@@ -94,6 +99,17 @@
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         cell.textLabel.textColor = [UIColor greenColor];
     }
+}
+
+#pragma mark Reorder
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    NSString *stringToMove = self.todos[sourceIndexPath.row];
+    [self.todos removeObjectAtIndex:sourceIndexPath.row];
+    [self.todos insertObject:stringToMove atIndex:destinationIndexPath.row];
 }
 
 @end
